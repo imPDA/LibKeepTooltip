@@ -590,7 +590,7 @@ local function LayoutKeepTooltip(self, keepId, battlegroundContext, historyPerce
     self.battlegroundContext = battlegroundContext
     self.historyPercent = historyPercent
 
-    self.keepName = GetKeepName(keepId)
+    self.keepName = zo_strformat("<<!aC:1>>", GetKeepName(keepId)) --this strips the keepname of its grammar markups in different translations of the game and always capitalizes the first letter of the string
     if not self.keepName then return end
 
     self.keepType = GetKeepType(keepId)
