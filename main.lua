@@ -1,28 +1,27 @@
-local function Logger(name)
-    local logger
+local function Logger()
+    if not LibDebugLogger then return function(...) end end
 
-    if LibDebugLogger then
-        logger = LibDebugLogger:Create(name or 'IMP_PVP_UI')
-        logger:SetMinLevelOverride(LibDebugLogger.LOG_LEVEL_DEBUG)
-    end
+    local logger = LibDebugLogger:Create('LibKeepTooltip')
+    logger:SetMinLevelOverride(LibDebugLogger.LOG_LEVEL_DEBUG)
 
     local level = LibDebugLogger.LOG_LEVEL_DEBUG
-    local function inner (...)
-        if logger then
-            logger:Log(level, ...)
-        end
+
+    local function inner(...)
+        logger:Log(level, ...)
     end
 
     return inner
 end
 
-local Log = Logger('LibKeepTooltip')
+local Log = Logger()
+
+-- ----------------------------------------------------------------------------
 
 local addon = {}
 
 addon.name = 'LibKeepTooltip'
 addon.displayName = 'LibKeepTooltip'
-addon.version = '0.0.4'
+addon.version = '1.0.1'
 
 --#region REFACTORED PART
 -- Refactored `esoui\esoui\ingame\map\keeptooltip.lua`
@@ -88,7 +87,7 @@ local function AddHeaderLine(self)
     local alliance = self.alliance
     local keepName = self.keepName
 
-    local text = keepName
+    local text = zo_strformat(SI_TOOLTIP_KEEP_NAME, keepName)
 
     local headerControl = GetControl(self, 'Name')
     local allianceColor = GetAllianceColor(alliance)

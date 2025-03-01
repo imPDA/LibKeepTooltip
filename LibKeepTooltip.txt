@@ -1,8 +1,8 @@
 ## Title: |cAFD3FFLibKeepTooltip|r
 ## Description: Lib to prettify keep tooltips.
 ## Author: |c7c42f2@impda|r [EU]
-## Version: 1.0.0
-## IntVersion: 1100000
+## Version: 1.0.1
+## IntVersion: 1101000
 ## APIVersion: 101044
 ## IsLibrary: true
 ## OptionalDependsOn: LibDebugLogger
